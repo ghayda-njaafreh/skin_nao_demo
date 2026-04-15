@@ -1,6 +1,6 @@
 # Skin NAO Demo
 
-An educational demonstration project that integrates a pre-trained skin lesion classification model with a NAO robot interaction workflow and a simple web interface.
+An educational demonstration project that integrates a pre-trained skin lesion classification model with a **NAO robot interaction workflow** and a **simple web interface** for skin image analysis and presentation.
 
 This project was built for **educational, research demonstration, and presentation purposes only**. It is **not** intended for medical diagnosis, treatment, or clinical decision-making.
 
@@ -10,7 +10,7 @@ The system combines three main parts:
 
 - **Inference backend** for skin lesion image classification
 - **NAO robot integration** for speech and interaction
-- **Web interface** for image upload and result display
+- **Web interface** for image upload, capture workflow, and result display
 
 The demonstration workflow allows the system to:
 
@@ -18,6 +18,43 @@ The demonstration workflow allows the system to:
 2. Run inference using a pre-trained skin lesion classification model
 3. Return the predicted class and confidence values
 4. Generate a spoken explanation for the NAO robot
+5. Present the results through a lightweight demo interface
+
+## Project Screenshots
+
+You can add project images inside a folder such as:
+
+```text
+assets/screenshots/
+```
+
+Then display them in the README like this:
+
+```md
+![Web Interface](assets/screenshots/web-interface.png)
+![Prediction Result](assets/screenshots/prediction-result.png)
+![NAO Interaction](assets/screenshots/nao-interaction.png)
+```
+
+Suggested screenshots to include:
+
+- the web interface home page
+- the upload or capture screen
+- a sample prediction result screen
+- the NAO robot during the demo
+- backend/API output or workflow screenshots if useful
+
+### Example Gallery Section
+
+> Replace these paths with your actual images after uploading them to the repository.
+
+```md
+## Demo Images
+
+![Web Interface](assets/screenshots/web-interface.png)
+![Prediction Result](assets/screenshots/prediction-result.png)
+![NAO Robot Demo](assets/screenshots/nao-demo.jpg)
+```
 
 ## Project Structure
 
@@ -34,11 +71,13 @@ skin_nao_demo/
 │   ├── nao_speaker.py
 │   ├── predictor.py
 │   └── test_predictor.py
-└── skinnaoweb/
-    ├── index.html
-    ├── *.html
-    ├── *.css
-    └── images
+├── skinnaoweb/
+│   ├── index.html
+│   ├── *.html
+│   ├── *.css
+│   └── images/
+└── assets/
+    └── screenshots/
 ```
 
 ## Model Attribution
@@ -78,6 +117,7 @@ This repository includes:
 - web UI files
 - label mapping file
 - test/integration helper files
+- optional project screenshots and demo images
 
 This repository does **not** include:
 
@@ -88,14 +128,14 @@ This repository does **not** include:
 
 ## Setup
 
-## 1) Clone the repository
+### 1) Clone the repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/skin-nao-demo.git
 cd skin-nao-demo
 ```
 
-## 2) Create and activate a Python environment
+### 2) Create and activate a Python environment
 
 ```bash
 python -m venv .venv
@@ -113,13 +153,13 @@ On macOS/Linux:
 source .venv/bin/activate
 ```
 
-## 3) Install dependencies
+### 3) Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 4) Download the model weights separately
+### 4) Download the model weights separately
 
 Download the trained model weights from the original Hugging Face source and place the file in:
 
@@ -127,7 +167,7 @@ Download the trained model weights from the original Hugging Face source and pla
 skin_nao_demo/model.pth
 ```
 
-## 5) Update local configuration if needed
+### 5) Update local configuration if needed
 
 Before running the project, review local machine-specific settings such as:
 
@@ -163,12 +203,24 @@ Before publishing publicly, make sure you do **not** commit:
 - `__pycache__/`
 - any local credentials or private IP-sensitive files
 
-## Suggested Citation / Acknowledgment
+## Suggested Acknowledgment
 
 If you present or document this project, include an acknowledgment such as:
 
 > This project uses a pre-trained skin lesion classification model from the Hugging Face repository `iamhmh/derm-cnn-ham10000`, used here for non-commercial educational demonstration purposes.
 
-## Authors
+## Contributors
 
-Developed as a collaborative educational project.
+This project was developed collaboratively by:
+
+- **ghayda-njaafreh**
+- **shadarawa**
+
+## Notes for Public Release
+
+For a cleaner public repository, it is recommended to:
+
+- keep screenshots inside `assets/screenshots/`
+- avoid uploading model weights directly
+- remove local logs and temporary outputs before each commit
+- replace private IPs and local paths with placeholders in the shared code
