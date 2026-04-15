@@ -1,65 +1,62 @@
-# Skin NAO Demo
+# Dr. Nao - Dermatology Assistant
 
-An educational demonstration project that integrates a pre-trained skin lesion classification model with a **NAO robot interaction workflow** and a **simple web interface** for skin image analysis and presentation.
+An educational robotics and AI demonstration project that combines the **NAO humanoid robot**, a **web-based dermatology interface**, and a **pre-trained skin lesion classification model** to create an interactive assistant for skin lesion image analysis.
 
-This project was built for **educational, research demonstration, and presentation purposes only**. It is **not** intended for medical diagnosis, treatment, or clinical decision-making.
+This project was developed as a demonstration-oriented academic prototype showing how robotics, computer vision, and medical AI can be integrated into a single interactive workflow.
 
-## Project Overview
+---
 
-The system combines three main parts:
+## Overview
 
-- **Inference backend** for skin lesion image classification
-- **NAO robot integration** for speech and interaction
-- **Web interface** for image upload, capture workflow, and result display
+**Dr. Nao - Dermatology Assistant** allows a user to:
 
-The demonstration workflow allows the system to:
+- upload a skin lesion image through a web interface
+- capture an image from a laptop camera
+- capture an image from a NAO-connected camera pipeline
+- run image classification using a pre-trained dermatology model
+- display the predicted lesion class with confidence scores
+- present the result visually in the interface
+- generate a spoken-style explanation through the NAO interaction flow
 
-1. Receive an uploaded skin image or capture one through the NAO camera workflow
-2. Run inference using a pre-trained skin lesion classification model
-3. Return the predicted class and confidence values
-4. Generate a spoken explanation for the NAO robot
-5. Present the results through a lightweight demo interface
+The system is designed for **educational demonstration purposes only** and is intended to showcase human-robot interaction combined with AI-based image analysis.
+
+---
+
+## Key Features
+
+- Interactive web-based diagnosis interface
+- Support for uploaded skin lesion images
+- Laptop camera capture workflow
+- NAO camera capture workflow
+- Skin lesion prediction with top-ranked class probabilities
+- NAO-oriented interaction and speech pipeline
+- Clean demonstration flow for academic presentations and exhibitions
+
+---
 
 ## Project Screenshots
 
-You can add project images inside a folder such as:
+### Home Interface
+![Home Interface](assets/screenshots/home-interface.png)
 
-```text
-assets/screenshots/
-```
+### Upload and Camera View
+![Upload and Camera View](assets/screenshots/upload-and-camera-view.png)
 
-Then display them in the README like this:
+### NAO Camera Capture View
+![NAO Camera Capture View](assets/screenshots/nao-camera-capture-view.jpeg)
 
-```md
-![Web Interface](assets/screenshots/web-interface.png)
-![Prediction Result](assets/screenshots/prediction-result.png)
-![NAO Interaction](assets/screenshots/nao-interaction.png)
-```
+### Diagnosis Result - Nevus Example
+![Diagnosis Result - Nevus](assets/screenshots/nao-camera-result-nevus.jpeg)
 
-Suggested screenshots to include:
+### Diagnosis Result - Basal Cell Carcinoma Example
+![Diagnosis Result - BCC](assets/screenshots/diagnosis-result-bcc.jpeg)
 
-- the web interface home page
-- the upload or capture screen
-- a sample prediction result screen
-- the NAO robot during the demo
-- backend/API output or workflow screenshots if useful
-
-### Example Gallery Section
-
-> Replace these paths with your actual images after uploading them to the repository.
-
-```md
-## Demo Images
-
-![Web Interface](assets/screenshots/web-interface.png)
-![Prediction Result](assets/screenshots/prediction-result.png)
-![NAO Robot Demo](assets/screenshots/nao-demo.jpg)
-```
+---
 
 ## Project Structure
 
 ```text
-skin_nao_demo/
+.
 ├── nao.py
 ├── nao_camera_server/
 │   └── server.py
@@ -73,154 +70,262 @@ skin_nao_demo/
 │   └── test_predictor.py
 ├── skinnaoweb/
 │   ├── index.html
-│   ├── *.html
-│   ├── *.css
-│   └── images/
-└── assets/
-    └── screenshots/
-```
+│   └── other frontend assets
+├── assets/
+│   └── screenshots/
+│       ├── home-interface.png
+│       ├── upload-and-camera-view.png
+│       ├── nao-camera-capture-view.jpeg
+│       ├── nao-camera-result-nevus.jpeg
+│       └── diagnosis-result-bcc.jpeg
+├── requirements.txt
+├── .gitignore
+└── README.md
+````
+
+---
+
+## System Workflow
+
+1. The user opens the web interface.
+2. The user either:
+
+   * uploads a skin lesion image, or
+   * captures an image from the laptop camera, or
+   * captures an image from the NAO camera workflow.
+3. The backend processes the image.
+4. The image is passed to the pre-trained skin lesion classification model.
+5. The predicted class and confidence scores are returned.
+6. The result is displayed on the web interface.
+7. A NAO-compatible explanation or speech output can be triggered as part of the demo flow.
+
+---
+
+## Technologies Used
+
+* **Python**
+* **Flask / backend serving components**
+* **HTML / CSS / JavaScript**
+* **PyTorch**
+* **NAOqi / NAO integration workflow**
+* **Computer vision and image preprocessing**
+* **Web-based interaction interface**
+
+---
 
 ## Model Attribution
 
-This project uses a pre-trained skin lesion classification model from the following Hugging Face repository:
+This project uses a pre-trained skin lesion classification model from:
 
-**iamhmh / derm-cnn-ham10000**  
-<https://huggingface.co/iamhmh/derm-cnn-ham10000>
+**iamhmh / derm-cnn-ham10000**
+[https://huggingface.co/iamhmh/derm-cnn-ham10000](https://huggingface.co/iamhmh/derm-cnn-ham10000)
 
-We used the published trained model as part of our educational NAO-based demonstration workflow.
+The project uses that model as part of an educational demonstration workflow for skin lesion image analysis. The original model page states that the **model weights are licensed under CC BY-NC 4.0** and the **code is licensed under MIT**. Please review the original source and its license terms before reuse or redistribution.
 
-## Important License Notice
+---
 
-According to the original model page:
+## Important License and Usage Notice
 
-- **Model weights:** CC BY-NC 4.0
-- **Code:** MIT License
+This repository is shared in a **clean academic/demo form**.
 
-For that reason:
+* The pre-trained model file is **not included** in this repository.
+* Users should download the model from the original upstream source when needed.
+* The upstream model weights are marked for **non-commercial use** on the source page.
 
-- this repository is shared for **non-commercial educational and demonstration purposes only**
-- users should review the **original source and license terms** before downloading, reusing, or redistributing the model weights
-- the model weights are **not included in this repository**; they should be obtained from the original source
+Accordingly, this project should be treated as:
+
+* educational
+* academic
+* demonstration-oriented
+* non-commercial
+
+---
 
 ## Medical Disclaimer
 
-This project is for **educational and demonstration purposes only**.
+This project is intended for **educational and demonstration purposes only**.
 
-It is **not** a medical device and must **not** be used for diagnosis, treatment, screening, or clinical decision-making.
+It is **not** a medical device and must **not** be used for:
 
-## What Is Included in This Repository
+* medical diagnosis
+* treatment decisions
+* clinical decision-making
+* professional dermatological judgment
 
-This repository includes:
+The upstream model page also includes a diagnostic-use disclaimer, so any use of this system should remain strictly within safe educational/demo boundaries.
 
-- backend inference and API code
-- NAO interaction scripts
-- web UI files
-- label mapping file
-- test/integration helper files
-- optional project screenshots and demo images
+---
 
-This repository does **not** include:
+## Setup Instructions
 
-- the external pre-trained model weights file (`model.pth`)
-- runtime logs
-- generated uploads or captured images
-- machine-specific secrets, credentials, or local environment paths
-
-## Setup
-
-### 1) Clone the repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/skin-nao-demo.git
-cd skin-nao-demo
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+cd YOUR_REPOSITORY
 ```
 
-### 2) Create and activate a Python environment
+### 2. Create and activate a virtual environment
+
+#### Windows
 
 ```bash
 python -m venv .venv
-```
-
-On Windows:
-
-```bash
 .venv\Scripts\activate
 ```
 
-On macOS/Linux:
+#### Linux / macOS
 
 ```bash
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### 3) Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4) Download the model weights separately
+### 4. Download the model weights
 
-Download the trained model weights from the original Hugging Face source and place the file in:
+Download the required trained model weights from the original source:
 
-```text
-skin_nao_demo/model.pth
+`https://huggingface.co/iamhmh/derm-cnn-ham10000`
+
+Then place the downloaded model file in the expected local path used by the backend code.
+
+> Note: the model file is intentionally not included in this repository.
+
+### 5. Configure local paths and device-specific settings
+
+Before running the project, update local configuration values inside the code such as:
+
+* `NAO_IP`
+* `PYTHON2_PATH`
+* NAO camera server URL
+* any local SDK or runtime paths
+
+Example placeholders:
+
+```python
+NAO_IP = "YOUR_NAO_IP"
+PYTHON2_PATH = r"C:\Path\To\Python27\python.exe"
+NAO_CAMERA_SERVER_URL = "http://YOUR_NAO_CAMERA_SERVER_IP:5000/snapshot"
 ```
 
-### 5) Update local configuration if needed
+### 6. Run the backend
 
-Before running the project, review local machine-specific settings such as:
+Use the appropriate script or backend entry point based on your local setup.
 
-- NAO robot IP address
-- NAO camera server URL
-- Python 2 interpreter path used for NAO SDK integration
-- any local file paths
+### 7. Open the web interface
 
-## Running the Backend API
+Launch the frontend and access the interface through your local browser.
 
-From the backend folder:
+---
 
-```bash
-cd skin_nao_demo
-uvicorn main:app --reload
-```
+## Notes for NAO Integration
 
-## Example Endpoints
+This project includes a NAO-oriented interaction pipeline. To use it correctly, you may need:
 
-- `GET /` → API health message
-- `POST /predict` → predict from uploaded image
-- `POST /predict_from_nao` → capture from NAO camera workflow and predict
+* a configured NAO robot or virtual environment
+* compatible Python / SDK setup for NAO communication
+* correct network IP configuration
+* proper local runtime paths for robot communication scripts
 
-## Recommended Repository Hygiene
+Because NAO environments differ between machines, some paths and settings must be adjusted manually for your device.
 
-Before publishing publicly, make sure you do **not** commit:
+---
 
-- `model.pth`
-- `nao_speech_log.txt`
-- `uploads/`
-- `captured_images/`
-- `.venv/`
-- `__pycache__/`
-- any local credentials or private IP-sensitive files
+## What Is Included in This Repository
 
-## Suggested Acknowledgment
+Included:
 
-If you present or document this project, include an acknowledgment such as:
+* source code
+* frontend interface
+* backend logic
+* prediction pipeline code
+* NAO interaction scripts
+* screenshots
+* documentation
 
-> This project uses a pre-trained skin lesion classification model from the Hugging Face repository `iamhmh/derm-cnn-ham10000`, used here for non-commercial educational demonstration purposes.
+Not included:
+
+* pre-trained model weights
+* runtime logs
+* temporary uploads
+* captured user images
+* private environment files
+
+---
+
+## Recommended Git Ignore Scope
+
+This repository is intended to exclude items such as:
+
+* model weights
+* logs
+* uploaded images
+* captured images
+* cache files
+* local virtual environments
+* machine-specific temporary files
+
+---
 
 ## Contributors
 
-This project was developed collaboratively by:
+Developed by:
 
-- **ghayda-njaafreh**
-- **shadarawa**
+* **ghayda-njaafreh**
+* **shadarawa**
 
-## Notes for Public Release
+---
 
-For a cleaner public repository, it is recommended to:
+## Academic / Demonstration Context
 
-- keep screenshots inside `assets/screenshots/`
-- avoid uploading model weights directly
-- remove local logs and temporary outputs before each commit
-- replace private IPs and local paths with placeholders in the shared code
+This project was developed as an academic-style prototype demonstrating how:
+
+* humanoid robotics
+* AI-based image classification
+* interactive web systems
+* medical-themed assistive interfaces
+
+can be combined into one integrated demonstration platform.
+
+It is especially suitable for:
+
+* university demos
+* academic exhibitions
+* robotics presentations
+* AI demonstration events
+
+---
+
+## Future Improvements
+
+Possible future directions include:
+
+* improved UI/UX design
+* live NAO voice interaction enhancements
+* better deployment packaging
+* configurable model loading
+* multi-model comparison
+* safer and more modular medical-AI demo workflows
+* stronger environment configuration handling
+
+---
+
+## Citation / Acknowledgment
+
+If you use or adapt this project for an academic demonstration, please also acknowledge the original upstream model source:
+
+**iamhmh / derm-cnn-ham10000**
+[https://huggingface.co/iamhmh/derm-cnn-ham10000](https://huggingface.co/iamhmh/derm-cnn-ham10000)
+
+---
+
+## Contact
+
+For academic/demo collaboration or project discussion, please use the repository issues section or your preferred GitHub contact method.
+
