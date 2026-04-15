@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Diagnosis</title>
+  <link rel="stylesheet" href="patient-diagnosis.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="main-card">
+      <div class="top-bar">
+        <h1>Patient Diagnosis</h1>
+        <div class="top-icons">
+          <span class="small-icon">↕</span>
+          <span class="small-icon">─</span>
+        </div>
+      </div>
+
+      <div class="content-area">
+        <h2>Upload Skin Lesion Image</h2>
+
+        <div class="upload-box">
+          <input type="file" id="imageInput" accept="image/*" />
+          <button id="uploadBtn">Analyze Uploaded Image</button>
+        </div>
+
+        <div class="nao-camera-section">
+          <h3>Camera Sources</h3>
+
+          <div class="camera-source-tabs">
+            <button id="showLaptopCameraBtn" class="camera-switch-btn active">Laptop Camera</button>
+            <button id="showNaoCameraBtn" class="camera-switch-btn">NAO Camera</button>
+          </div>
+
+          <div id="laptopCameraSection">
+            <div class="camera-card">
+              <video id="laptopVideo" class="nao-live-img" autoplay playsinline></video>
+            </div>
+            <div class="camera-buttons-row">
+              <button id="startLaptopCameraBtn">Start Laptop Camera</button>
+              <button id="captureLaptopBtn">Capture from Laptop</button>
+            </div>
+          </div>
+
+          <div id="naoCameraSection" class="hidden">
+            <div class="camera-card">
+              <img
+                id="naoLiveFeed"
+                src="http://172.25.97.56:5000/video_feed"
+                alt="NAO live camera feed"
+                class="nao-live-img"
+              />
+            </div>
+            <div class="camera-buttons-row">
+              <button id="captureNaoBtn">Capture from NAO Camera</button>
+            </div>
+          </div>
+        </div>
+
+        <canvas id="captureCanvas" class="hidden"></canvas>
+
+        <div id="capturedSection" class="preview-section hidden">
+          <h3>Captured Image</h3>
+          <div class="preview-card">
+            <img id="capturedPreview" src="" alt="Captured image" class="preview-img" />
+          </div>
+        </div>
+
+        <div id="previewSection" class="preview-section hidden">
+          <h3>Selected Image</h3>
+          <div class="preview-card">
+            <img id="imagePreview" src="" alt="Selected lesion image" class="preview-img" />
+          </div>
+        </div>
+
+        <div id="resultSection" class="result-section hidden">
+          <h3>Diagnosis Result</h3>
+
+          <div class="result-card">
+            <div class="result-text">
+              <p class="predicted">
+                <strong>Predicted Class:</strong>
+                <span id="predictedClass">-</span>
+              </p>
+
+              <p class="confidence">
+                <strong>Confidence:</strong>
+                <span id="confidenceValue">-</span>
+              </p>
+
+              <div class="prob-box">
+                <p class="prob-title">Top Predictions</p>
+                <div id="topPredictions"></div>
+              </div>
+            </div>
+
+            <div class="robot-box">
+              <img src="nao.png" alt="NAO Robot" class="robot-img" />
+            </div>
+          </div>
+
+          <p class="note" id="speechText">
+            This result is for educational demonstration only.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const imageInput = document.getElementById("imageInput");
+    const uploadBtn = document.getElementById("uploadBtn");
+
+    const previewSection = document.getElementById("previewSection");
+    const imagePreview = document.getElementById("imagePreview");
+
+    const capturedSection = document.getElementById("capturedSection");
+    const capturedPreview = document.getElementById("capturedPreview");
+
+    const resultSection = document.getElementById("resultSection");
+    const predictedClass = document.getElementById("predictedClass");
+    const confidenceValue = document.getElementById("confidenceValue");
+    const topPredictions = document.getElementById("topPredictions");
+    const speechText = document.getElementById("speechText");
+
+    const showLaptopCameraBtn = document.getElementById("showLaptopCameraBtn");
+    const showNaoCameraBtn = document.getElementById("showNaoCameraBtn");
+
+    const laptopCameraSection = document.getElementById("laptopCameraSection");
+    const naoCameraSection = document.getElementById("naoCameraSection");
+
+    const laptopVideo = document.getElementById("laptopVideo");
+    const startLaptopCameraBtn = document.getElementById("startLaptopCameraBtn");
+    const captureLaptopBtn = document.getElementById("captureLaptopBtn");
+    const captureNaoBtn = document.getElementById("captureNaoBtn");
+
+    const captureCanvas = document.getElementById("captureCanvas");
+
+    const API_URL = "http://172.25.97.56:8000/predict";
+    const CAPTURE_API_URL = "http://172.25.97.56:8000/predict_from_nao";
+
+    let laptopStream = null;
+
+    function resetResultsOnly() {
+      resultSection.classList.add("hidden");
+      topPredictions.innerHTML = "";
+    }
+
+    function renderPrediction(data) {
+      predictedClass.textContent = data.predicted_class_name || data.predicted_class || "-";
+      confidenceValue.textContent = (data.confidence * 100).toFixed(1) + "%";
+
+      topPredictions.innerHTML = "";
+
+      if (data.top_predictions && data.top_predictions.length > 0) {
+        data.top_predictions.forEach((item, index) => {
+          const p = document.createElement("p");
+          const className = item.class_name || item.class || "-";
+          p.innerHTML = `${index + 1}. ${className}: <strong>${(item.probability * 100).toFixed(1)}%</strong>`;
+          topPredictions.appendChild(p);
+        });
+      }
+
+      speechText.textContent = data.speech_text || "This result is for educational demonstration only.";
+      resultSection.classList.remove("hidden");
+    }
+
+    function showLaptopSection() {
+      laptopCameraSection.classList.remove("hidden");
+      naoCameraSection.classList.add("hidden");
+      showLaptopCameraBtn.classList.add("active");
+      showNaoCameraBtn.classList.remove("active");
+    }
+
+    function showNaoSection() {
+      naoCameraSection.classList.remove("hidden");
+      laptopCameraSection.classList.add("hidden");
+      showNaoCameraBtn.classList.add("active");
+      showLaptopCameraBtn.classList.remove("active");
+    }
+
+    showLaptopCameraBtn.addEventListener("click", showLaptopSection);
+    showNaoCameraBtn.addEventListener("click", showNaoSection);
+
+    async function startLaptopCamera() {
+      try {
+        if (laptopStream) return;
+
+        laptopStream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+
+        laptopVideo.srcObject = laptopStream;
+      } catch (error) {
+        alert("Could not access laptop camera: " + error.message);
+      }
+    }
+
+    startLaptopCameraBtn.addEventListener("click", async function () {
+      startLaptopCameraBtn.disabled = true;
+      startLaptopCameraBtn.textContent = "Starting...";
+      await startLaptopCamera();
+      startLaptopCameraBtn.disabled = false;
+      startLaptopCameraBtn.textContent = "Start Laptop Camera";
+    });
+
+    imageInput.addEventListener("change", function () {
+      const file = imageInput.files[0];
+
+      if (!file) {
+        previewSection.classList.add("hidden");
+        imagePreview.src = "";
+        return;
+      }
+
+      const imageUrl = URL.createObjectURL(file);
+      imagePreview.src = imageUrl;
+      previewSection.classList.remove("hidden");
+
+      capturedSection.classList.add("hidden");
+      capturedPreview.src = "";
+      resetResultsOnly();
+    });
+
+    uploadBtn.addEventListener("click", async function () {
+      if (imageInput.files.length === 0) {
+        alert("Please choose an image first.");
+        return;
+      }
+
+      const file = imageInput.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        uploadBtn.disabled = true;
+        uploadBtn.textContent = "Analyzing...";
+
+        const response = await fetch(API_URL, {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || "Prediction failed.");
+        }
+
+        renderPrediction(data);
+
+      } catch (error) {
+        alert("Error: " + error.message);
+      } finally {
+        uploadBtn.disabled = false;
+        uploadBtn.textContent = "Analyze Uploaded Image";
+      }
+    });
+
+    captureLaptopBtn.addEventListener("click", async function () {
+      try {
+        if (!laptopStream) {
+          await startLaptopCamera();
+        }
+
+        if (!laptopVideo.videoWidth || !laptopVideo.videoHeight) {
+          alert("Laptop camera is not ready yet.");
+          return;
+        }
+
+        captureLaptopBtn.disabled = true;
+        captureLaptopBtn.textContent = "Capturing...";
+
+        captureCanvas.width = laptopVideo.videoWidth;
+        captureCanvas.height = laptopVideo.videoHeight;
+
+        const ctx = captureCanvas.getContext("2d");
+        ctx.drawImage(laptopVideo, 0, 0, captureCanvas.width, captureCanvas.height);
+
+        const imageDataUrl = captureCanvas.toDataURL("image/jpeg");
+        capturedPreview.src = imageDataUrl;
+        capturedSection.classList.remove("hidden");
+
+        previewSection.classList.add("hidden");
+        imagePreview.src = "";
+        resetResultsOnly();
+
+        const blob = await new Promise(resolve => captureCanvas.toBlob(resolve, "image/jpeg", 0.95));
+        const formData = new FormData();
+        formData.append("file", blob, "laptop_capture.jpg");
+
+        const response = await fetch(API_URL, {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || "Prediction failed.");
+        }
+
+        renderPrediction(data);
+
+      } catch (error) {
+        alert("Error: " + error.message);
+      } finally {
+        captureLaptopBtn.disabled = false;
+        captureLaptopBtn.textContent = "Capture from Laptop";
+      }
+    });
+
+    captureNaoBtn.addEventListener("click", async function () {
+      try {
+        captureNaoBtn.disabled = true;
+        captureNaoBtn.textContent = "Capturing...";
+
+        const response = await fetch(CAPTURE_API_URL, {
+          method: "POST"
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || "Prediction from camera failed.");
+        }
+
+        if (data.captured_image_url) {
+          capturedPreview.src = data.captured_image_url + "?t=" + new Date().getTime();
+          capturedSection.classList.remove("hidden");
+        }
+
+        previewSection.classList.add("hidden");
+        imagePreview.src = "";
+
+        renderPrediction(data);
+
+      } catch (error) {
+        alert("Error: " + error.message);
+      } finally {
+        captureNaoBtn.disabled = false;
+        captureNaoBtn.textContent = "Capture from NAO Camera";
+      }
+    });
+
+    window.addEventListener("beforeunload", function () {
+      if (laptopStream) {
+        laptopStream.getTracks().forEach(track => track.stop());
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Management</title>
+  <link rel="stylesheet" href="model-management.css" />
+</head>
+<body>
+  <div class="page-box">
+    <div class="inner-card">
+
+      <div class="inner-top">
+        <h1>Model Management</h1>
+        <a href="admin-dashboard.html" class="back-btn">
+          <span>Back</span>
+          <span class="back-circle">◀</span>
+        </a>
+      </div>
+
+      <div class="hero-strip">
+        <div class="hero-text">
+          <h2>AI Model Control</h2>
+          <p>Manage upload, activation, monitoring, and performance of the skin diagnosis model.</p>
+        </div>
+
+        <div class="hero-robot">
+          <img src="NAO robot.png" alt="NAO Robot" />
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="panel upload-panel">
+          <div class="panel-title">
+            <span class="panel-icon">▦</span>
+            <h3>Upload New Model</h3>
+          </div>
+
+          <div class="panel-body">
+            <div class="field-group">
+              <label>Model Name</label>
+              <input type="text" value="Skin Classifier" />
+            </div>
+
+            <div class="field-group">
+              <label>Version</label>
+              <select>
+                <option>v2.2</option>
+                <option>v2.1</option>
+                <option>v2.0</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label>Model File</label>
+              <input type="file" />
+            </div>
+
+            <div class="button-row">
+              <button class="primary-btn">Upload Model</button>
+              <button class="light-btn">Validate</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel actions-panel">
+          <div class="panel-title">
+            <span class="panel-icon">▦</span>
+            <h3>Model Actions</h3>
+          </div>
+
+          <div class="actions-list">
+            <div class="action-card">
+              <div class="action-icon">⏻</div>
+              <div class="action-text">
+                <h4>Activate Model</h4>
+                <p>Set the uploaded model as the current production model.</p>
+              </div>
+            </div>
+
+            <div class="action-card">
+              <div class="action-icon">◉</div>
+              <div class="action-text">
+                <h4>Disable Model</h4>
+                <p>Stop a model from being used for predictions.</p>
+              </div>
+            </div>
+
+            <div class="action-card">
+              <div class="action-icon">⟲</div>
+              <div class="action-text">
+                <h4>Performance Review</h4>
+                <p>Check metrics such as confidence and response behavior.</p>
+              </div>
+            </div>
+
+            <div class="action-card">
+              <div class="action-icon">▤</div>
+              <div class="action-text">
+                <h4>Version Tracking</h4>
+                <p>Review model release history and active version details.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="panel metrics-panel">
+            <div class="panel-title">
+              <span class="panel-icon">◴</span>
+              <h3>Model Metrics</h3>
+            </div>
+
+            <div class="metric-box">
+              <div class="metric-row">
+                <span class="metric-label">Current Version</span>
+                <span class="metric-value">v2.1</span>
+              </div>
+
+              <div class="metric-row">
+                <span class="metric-label">Status</span>
+                <span class="metric-value status-running">
+                  <span class="dot"></span>Running
+                </span>
+              </div>
+            </div>
+
+            <div class="metric-box accuracy-box">
+              <div class="metric-row">
+                <span class="metric-label">Accuracy</span>
+                <span class="metric-value accuracy-value">92%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel registry-panel">
+            <div class="panel-title">
+              <span class="panel-icon">▤</span>
+              <h3>Model Registry</h3>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Version</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Skin Classifier</td>
+                  <td>v2.1</td>
+                  <td>Running</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Skin Classifier</td>
+                  <td>v2.0</td>
+                  <td>Archived</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Skin Classifier</td>
+                  <td>v2.0</td>
+                  <td>2026-04-03</td>
+                  <td>2026-03-15</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

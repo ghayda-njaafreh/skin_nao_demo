@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Settings</title>
+  <link rel="stylesheet" href="system-settings.css" />
+</head>
+<body>
+  <div class="page-box">
+    <div class="inner-card">
+
+      <div class="inner-top">
+        <h1>System Settings</h1>
+        <a href="admin-dashboard.html" class="back-btn">
+          <span>Back</span>
+          <span class="back-circle">◀</span>
+        </a>
+      </div>
+
+      <div class="hero-strip">
+        <div class="hero-text">
+          <h2>AI Model Cotrol</h2>
+          <p>Manage upload, activation, monitoring, and performance of the skin diagnosis model.</p>
+        </div>
+
+        <div class="hero-robot">
+          <img src="NAO robot.png" alt="NAO Robot" />
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="panel left-panel">
+          <div class="panel-title">
+            <span class="panel-icon">▦</span>
+            <h3>General Settings</h3>
+          </div>
+
+          <div class="settings-form">
+            <div class="field-group">
+              <label><span class="field-icon">🔗</span> System Title</label>
+              <input type="text" value="Doctor Nao" />
+            </div>
+
+            <div class="field-group">
+              <label>Version</label>
+              <select>
+                <option>v2.2</option>
+                <option>v2.1</option>
+                <option>v2.0</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label>Model File</label>
+              <input type="file" />
+            </div>
+
+            <div class="button-row">
+              <button class="primary-btn">Upload Model</button>
+              <button class="light-btn">Validate</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel right-panel">
+          <div class="panel-title">
+            <span class="panel-icon">✥</span>
+            <h3>Security Settings</h3>
+          </div>
+
+          <div class="security-list">
+            <div class="security-item">
+              <h4><span>✥</span> Password Policy</h4>
+              <p>Pequire netøte pecswoorrds for accunts.</p>
+            </div>
+
+            <div class="security-item">
+              <h4><span>◔</span> Session Timeout</h4>
+              <p>Autemarcially sigh out,persdorifatlity.</p>
+            </div>
+
+            <div class="security-item">
+              <h4><span>✥</span> Access Rules</h4>
+              <p>Check metnes auch as fontherendations.</p>
+            </div>
+
+            <div class="security-item">
+              <h4><span>✥</span> Login Monitoring</h4>
+              <p>Peview sustere behavøur&suspejous account activity.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel bottom-panel">
+          <h3 class="bottom-title">Current System Status</h3>
+          <p class="bottom-text">
+            The platform is configured in standard blue theme mode, notifications are enabled, and admin-level security controls are active.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

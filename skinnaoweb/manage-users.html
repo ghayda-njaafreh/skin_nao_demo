@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Users</title>
+  <link rel="stylesheet" href="manage-users.css" />
+</head>
+<body>
+  <div class="page-box">
+    <div class="inner-card">
+
+      <div class="inner-top">
+        <h1>Manage Users</h1>
+        <a href="admin-dashboard.html" class="back-btn">
+          <span>Back</span>
+          <span class="back-circle">◀</span>
+        </a>
+      </div>
+
+      <div class="hero-strip">
+        <div class="hero-text">
+          <h2>Manage Users</h2>
+          <p>Create, update, and manage doctor and admin accounts from one place.</p>
+        </div>
+
+        <div class="hero-robot">
+          <img src="nao.png" alt="NAO Robot" />
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="left-column">
+          <div class="panel large-panel">
+            <div class="panel-title">
+              <span class="panel-icon">📝</span>
+              <h3>User New User</h3>
+            </div>
+
+            <div class="form-area">
+              <div class="input-group full">
+                <label>Full Name</label>
+                <input type="text" value="Dr. Sarah" />
+              </div>
+
+              <div class="input-group full">
+                <label>Email</label>
+                <select>
+                  <option>Email</option>
+                  <option>sarah@example.com</option>
+                  <option>omar@example.com</option>
+                </select>
+              </div>
+
+              <div class="row-2">
+                <div class="input-group">
+                  <label>Role</label>
+                  <select>
+                    <option>Doctor</option>
+                    <option>Admin</option>
+                  </select>
+                </div>
+
+                <div class="input-group">
+                  <label>Status</label>
+                  <select>
+                    <option>Active</option>
+                    <option>Inactive</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="button-row">
+                <button class="primary-btn">Add User</button>
+                <button class="light-btn">Reset</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel users-table-panel">
+            <h3 class="simple-title">Current Users</h3>
+
+            <table>
+              <tr>
+                <td>Dr. Sarah</td>
+                <td>sarah@example.com</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>Admin Omar</td>
+                <td>omar@example.com</td>
+                <td>Active</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="panel side-panel">
+            <div class="panel-title">
+              <span class="panel-icon">👥</span>
+              <h3>User Controls</h3>
+            </div>
+
+            <div class="control-list">
+              <p>✓&nbsp;&nbsp;Edit User</p>
+              <p>✓&nbsp;&nbsp;Deactivate User</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="control-list single-item">
+              <p>✓&nbsp;&nbsp;Reset Password</p>
+            </div>
+
+            <div class="side-buttons">
+              <button class="primary-btn full-btn">Save Settings</button>
+              <button class="light-btn full-btn">Restore Defaults</button>
+            </div>
+          </div>
+
+          <div class="panel current-users-mini">
+            <h3 class="simple-title">Current Users</h3>
+
+            <div class="mini-user-list">
+              <div class="mini-user-row">
+                <span>👤 Dr. Sarah</span>
+                <span>Doctor</span>
+              </div>
+              <div class="mini-user-row">
+                <span>👤 Admin omar</span>
+                <span>Admin</span>
+              </div>
+              <div class="mini-user-row">
+                <span>👤 Admin</span>
+                <span>Active</span>
+              </div>
+            </div>
+
+            <div class="mini-bottom-bar">
+              <span>⌂</span>
+              <span>◀</span>
+              <span>▶</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

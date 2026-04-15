@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Logs</title>
+  <link rel="stylesheet" href="view-logs.css" />
+</head>
+<body>
+  <div class="page-box">
+    <div class="inner-card">
+
+      <div class="inner-top">
+        <h1>View Logs</h1>
+        <a href="admin-dashboard.html" class="back-btn">
+          <span>Back</span>
+          <span class="back-circle">◀</span>
+        </a>
+      </div>
+
+      <div class="hero-strip">
+        <div class="hero-text">
+          <h2>System Logs</h2>
+          <p>Review platform activity, diagnosis events, login operations, and system diagnostics.</p>
+        </div>
+
+        <div class="hero-robot">
+          <img src="NAO robot.png" alt="NAO Robot" />
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="left-column">
+          <div class="panel activity-panel">
+            <div class="panel-title">
+              <span class="panel-icon">▦</span>
+              <h3>Recent Activity</h3>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Event</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10:15 AM</td>
+                  <td>New diagnosis request</td>
+                  <td>Completed</td>
+                </tr>
+                <tr>
+                  <td>10:35 AM</td>
+                  <td>Admin login</td>
+                  <td>Success</td>
+                </tr>
+                <tr>
+                  <td>11:00 AM</td>
+                  <td>Model check</td>
+                  <td>Normal</td>
+                </tr>
+                <tr>
+                  <td>11:20 AM</td>
+                  <td>User account update</td>
+                  <td>Saved</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="panel diagnostics-panel">
+            <div class="panel-title">
+              <span class="panel-icon">◉</span>
+              <h3>Diagnostics</h3>
+            </div>
+
+            <div class="diagnostics-list">
+              <div class="diag-card">
+                <h4>System Health</h4>
+                <p>System is running normally with no critical issues detected.</p>
+              </div>
+
+              <div class="diag-card">
+                <h4>Database Status</h4>
+                <p>Database connection is stable and available.</p>
+              </div>
+
+              <div class="diag-card">
+                <h4>AI Service</h4>
+                <p>Prediction service is responding within the normal range.</p>
+              </div>
+
+              <div class="diag-card">
+                <h4>Login Activity</h4>
+                <p>No suspicious login behavior has been detected.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="panel filter-panel">
+            <div class="panel-title">
+              <span class="panel-icon">⌕</span>
+              <h3>Search Logs</h3>
+            </div>
+
+            <div class="panel-body">
+              <div class="field-group">
+                <label>Event Type</label>
+                <select>
+                  <option>All Events</option>
+                  <option>Diagnosis Requests</option>
+                  <option>Logins</option>
+                  <option>Errors</option>
+                </select>
+              </div>
+
+              <div class="field-group">
+                <label>Date</label>
+                <input type="date" />
+              </div>
+
+              <div class="button-row">
+                <button class="primary-btn">Filter Logs</button>
+                <button class="light-btn">Clear</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel summary-panel">
+            <div class="panel-title">
+              <span class="panel-icon">▤</span>
+              <h3>Log Summary</h3>
+            </div>
+
+            <div class="summary-body">
+              <div class="summary-box">
+                <div class="summary-row">
+                  <span class="summary-label">Diagnosis Requests</span>
+                  <span class="summary-value">24</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Admin Logins</span>
+                  <span class="summary-value">8</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Warnings</span>
+                  <span class="summary-value">2</span>
+                </div>
+                <div class="summary-row">
+                  <span class="summary-label">Errors</span>
+                  <span class="summary-value">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel note-panel">
+            <div class="panel-title">
+              <span class="panel-icon">✦</span>
+              <h3>System Note</h3>
+            </div>
+
+            <div class="note-box">
+              The logging service is active and tracking user operations, diagnosis requests, and model-related events successfully.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
