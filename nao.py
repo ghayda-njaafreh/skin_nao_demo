@@ -5,13 +5,13 @@ import base64
 import json
 import urllib2
 
-sys.path.insert(0, r'C:\Users\DELL\Downloads\pythonSDK\lib')
+sys.path.insert(0, r'C:\Path\To\pythonSDK\lib')
 
 from naoqi import ALProxy
 
-NAO_IP     = "172.25.160.183"   
+NAO_IP = "YOUR_NAO_IP"  
 NAO_PORT   = 9559
-SERVER_URL = "http://172.25.97.56:5000/frame"
+SERVER_URL = "http://YOUR_SERVER_IP:5000/frame"
 
 def disable_auto_reactions():
     try:
