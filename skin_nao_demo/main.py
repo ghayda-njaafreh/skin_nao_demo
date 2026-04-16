@@ -15,7 +15,7 @@ from predictor import predict_image, build_speech_text
 
 app = FastAPI(title="Skin NAO Demo API")
 
-NAO_CAMERA_SERVER_URL = "http://172.25.97.56:5000/snapshot"
+NAO_CAMERA_SERVER_URL = "http://YOUR_NAO_CAMERA_SERVER_IP:5000/snapshot"
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,7 +35,7 @@ CAPTURED_DIR.mkdir(exist_ok=True)
 
 app.mount("/captured_images", StaticFiles(directory=str(CAPTURED_DIR)), name="captured_images")
 
-PYTHON2_PATH = r"C:\Python27\python.exe"
+PYTHON2_PATH = r"C:\Path\To\Python27\python.exe"
 NAO_SPEAKER_SCRIPT = BASE_DIR / "nao_speaker.py"
 
 
@@ -119,7 +119,7 @@ def predict_from_nao():
             "success": True,
             "filename": saved_filename,
             "source": "nao_camera",
-            "captured_image_url": f"http://172.25.97.56:8000/captured_images/{saved_filename}",
+            "captured_image_url": f"http://YOUR_BACKEND_IP:8000/captured_images/{saved_filename}",
             "predicted_index": result.get("predicted_index"),
             "predicted_class_code": result.get("predicted_class_code", result.get("predicted_class")),
             "predicted_class_name": result.get("predicted_class_name", result.get("predicted_class")),
