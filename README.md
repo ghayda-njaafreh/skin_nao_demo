@@ -259,20 +259,6 @@ Not included:
 
 ---
 
-## Recommended Git Ignore Scope
-
-This repository is intended to exclude items such as:
-
-* model weights
-* logs
-* uploaded images
-* captured images
-* cache files
-* local virtual environments
-* machine-specific temporary files
-
----
-
 ## Contributors
 
 Developed by:
