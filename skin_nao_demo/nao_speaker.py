@@ -3,11 +3,11 @@ import sys
 import time
 import random
 
-sys.path.insert(0, r'C:\Users\DELL\Downloads\pythonSDK\lib')
+sys.path.insert(0, r'C:\Path\To\pythonSDK\lib')
 
 from naoqi import ALProxy
 
-NAO_IP     = "172.25.160.183"   
+NAO_IP = "YOUR_NAO_IP"   
 NAO_PORT = 9559
 
 DISPLAY_COLORS = {
