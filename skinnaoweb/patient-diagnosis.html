@@ -47,7 +47,7 @@
             <div class="camera-card">
               <img
                 id="naoLiveFeed"
-                src="http://172.25.97.56:5000/video_feed"
+                src="http://YOUR_NAO_CAMERA_SERVER_IP:5000/video_feed"
                 alt="NAO live camera feed"
                 class="nao-live-img"
               />
@@ -137,8 +137,8 @@
 
     const captureCanvas = document.getElementById("captureCanvas");
 
-    const API_URL = "http://172.25.97.56:8000/predict";
-    const CAPTURE_API_URL = "http://172.25.97.56:8000/predict_from_nao";
+    const API_URL = "http://YOUR_BACKEND_IP:8000/predict";
+    const CAPTURE_API_URL = "http://YOUR_BACKEND_IP:8000/predict_from_nao";
 
     let laptopStream = null;
 
