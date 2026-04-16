@@ -104,7 +104,7 @@ The system is designed for **educational demonstration purposes only** and is in
 ## Technologies Used
 
 * **Python**
-* **Flask / backend serving components**
+* **FastAPI / backend serving components**
 * **HTML / CSS / JavaScript**
 * **PyTorch**
 * **NAOqi / NAO integration workflow**
@@ -161,8 +161,8 @@ The upstream model page also includes a diagnostic-use disclaimer, so any use of
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-cd YOUR_REPOSITORY
+git clone https://github.com/ghayda-njaafreh/skin_nao_demo.git
+cd skin_nao_demo
 ```
 
 ### 2. Create and activate a virtual environment
@@ -193,7 +193,7 @@ Download the required trained model weights from the original source:
 
 `https://huggingface.co/iamhmh/derm-cnn-ham10000`
 
-Then place the downloaded model file in the expected local path used by the backend code.
+Then place the downloaded model file in the local path expected by the prediction code, and update the path in the source code if needed for your environment.
 
 > Note: the model file is intentionally not included in this repository.
 
@@ -203,7 +203,8 @@ Before running the project, update local configuration values inside the code su
 
 * `NAO_IP`
 * `PYTHON2_PATH`
-* NAO camera server URL
+* `NAO_CAMERA_SERVER_URL`
+* `YOUR_BACKEND_IP`
 * any local SDK or runtime paths
 
 Example placeholders:
@@ -216,11 +217,15 @@ NAO_CAMERA_SERVER_URL = "http://YOUR_NAO_CAMERA_SERVER_IP:5000/snapshot"
 
 ### 6. Run the backend
 
-Use the appropriate script or backend entry point based on your local setup.
+From the project directory, run the backend server:
+
+```bash
+uvicorn skin_nao_demo.main:app --reload
+```
 
 ### 7. Open the web interface
 
-Launch the frontend and access the interface through your local browser.
+Open the frontend file from the `skinnaoweb` folder in your browser, or serve it locally using a simple static server if needed.
 
 ---
 
@@ -261,7 +266,7 @@ Not included:
 
 ## Contributors
 
-Developed by:
+This project was developed by:
 
 * **ghayda-njaafreh**
 * **shadarawa**
@@ -314,4 +319,3 @@ If you use or adapt this project for an academic demonstration, please also ackn
 ## Contact
 
 For academic/demo collaboration or project discussion, please use the repository issues section or your preferred GitHub contact method.
-
